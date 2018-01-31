@@ -100,6 +100,7 @@
         android:layout_marginTop="212dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-smallcaps"
+        android:onClick="onTemplatesClick"
         android:text="EDIT TEMPLATES"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"

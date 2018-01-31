@@ -28,4 +28,9 @@ public class Home extends Activity {
         startActivity(intent);
     }
 
+    public void onTemplatesClick(View view) {
+        Intent intent = new Intent(this, TemplatesMenu.class);
+        startActivity(intent);
+    }
+
 }
