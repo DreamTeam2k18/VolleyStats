@@ -9,6 +9,13 @@ import android.widget.RadioButton;
 
 public class TemplatesMenu extends AppCompatActivity {
 
+//    Template[] templates;
+//    templates = new Template[4];
+//    Template basic;
+//    Template intermediate;
+//    Template comprehensive;
+//    Template comprehensive2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +26,17 @@ public class TemplatesMenu extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
+
+    public void onAddClick(View view) {
+        Intent intent = new Intent(this, NewTemplate.class);
+        startActivity(intent);
+        //final RadioButton btn = new RadioButton();
+    }
+
+//    public void onBasicEditClick(View view) {
+//        Intent intent = new Intent(this, .class);
+//        startActivity(intent);
+//    }
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?

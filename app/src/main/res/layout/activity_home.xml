@@ -59,6 +59,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="50dp"
         android:background="@android:color/transparent"
+        android:elevation="0dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="NEW MATCH"
         android:textSize="30sp"
