@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MySQLProject.iml" filepath="$PROJECT_DIR$/MySQLProject.iml" />
       <module fileurl="file://C:\Users\Emma\Documents\GitHub\VolleyStats\MySQLProject.iml" filepath="C:\Users\Emma\Documents\GitHub\VolleyStats\MySQLProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/VolleyStats.iml" filepath="$PROJECT_DIR$/VolleyStats.iml" />
       <module fileurl="file://C:\Users\Niceg\AndroidStudioProjects\MySQLProject\VolleyStats.iml" filepath="C:\Users\Niceg\AndroidStudioProjects\MySQLProject\VolleyStats.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

@@ -7,17 +7,12 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 public class TemplatesMenu extends AppCompatActivity {
-
-    //Template[] templates;
-    //Template templates[] = new Template;
-
-    //Template[] templates = new Template[4];
-
-    List templatesList = new ArrayList();
+    VolleyStats vol;// = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
+//    List templatesList = new ArrayList();
     Template basic = new Template("basic", false, false);
     Template intermediate = new Template("intermediate", false, false);
     Template comprehensive = new Template("comprehensive", false, false);
@@ -25,23 +20,26 @@ public class TemplatesMenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates_menu);
 
-        templatesList.add(basic);
-        templatesList.add(intermediate);
-        templatesList.add(comprehensive);
-        templatesList.add(comprehensive2);
-
-        String s = getIntent().getStringExtra("btnName");
-
-        if(s != null){
-            Template t = new Template(s, false, false);
-
-            templatesList.add(t);
+        if( vol.templatesList.isEmpty()) {
+            vol.templatesList.add(basic);
+            vol.templatesList.add(intermediate);
+            vol.templatesList.add(comprehensive);
+            vol.templatesList.add(comprehensive2);
         }
 
-        newTemplate(templatesList);
+        //String s = getIntent().getStringExtra("btnName");
+        //vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
+//        if(s != null){
+//            Template t = new Template(s, false, false);
+//
+//            vol.templatesList.add(t);
+//        }
+
+        newTemplate(vol.templatesList);
     }
 
     public void onSettingsClick(View view) {
@@ -51,6 +49,8 @@ public class TemplatesMenu extends AppCompatActivity {
 
     public void onAddClick(View view) {
         Intent intent = new Intent(this, NewTemplate.class);
+        intent.putExtra("volleyStatsClass2", (Serializable) vol);
+
         startActivity(intent);
      }
 

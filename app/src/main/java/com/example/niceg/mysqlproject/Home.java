@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 
+import java.io.Serializable;
+
 public class Home extends Activity {
 
     @Override
@@ -30,6 +32,10 @@ public class Home extends Activity {
 
     public void onTemplatesClick(View view) {
         Intent intent = new Intent(this, TemplatesMenu.class);
+
+        //TRISTANS BULLSHIT
+        VolleyStats emmasVolleyStats = new VolleyStats();
+        intent.putExtra("volleyStatsClass", (Serializable) emmasVolleyStats);
         startActivity(intent);
     }
 

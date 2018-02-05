@@ -9,11 +9,14 @@ import android.widget.TextView;
 public class NewTemplate extends AppCompatActivity {
 
     CharSequence templateName = "";
+    VolleyStats vol;// = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_template);
+
+        vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass2");
 
         TextView name;
         name = (TextView) findViewById(R.id.name);
@@ -45,12 +48,12 @@ public class NewTemplate extends AppCompatActivity {
         finalName = nameText.toString();
         templateName = finalName;
 
-
-        //Template tmp = new Template(findViewById(R.id.name), findViewById(R.id.srv_rcv_0), findViewById(R.id.srv_p));
+        Template newTemp = new Template(finalName, false, false);
+        vol.templatesList.add(newTemp);
 
         Intent intent = new Intent(this, TemplatesMenu.class);
-        intent.putExtra("btnName", finalName);
-        //RadioButton radioButton = (RadioButton) findViewById(R.id.)
+        intent.putExtra("volleyStatsClass", vol);
+
         startActivity(intent);
     }
 }
