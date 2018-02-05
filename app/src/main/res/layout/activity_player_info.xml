@@ -43,13 +43,40 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@android:drawable/bottom_bar" />
 
+    <ImageButton
+        android:id="@+id/addBtn"
+        android:layout_width="33dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:onClick="onAddClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onAddClick"
+        android:text="ADD PLAYER"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/addBtn"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
     <EditText
         android:id="@+id/et_player_num"
         android:layout_width="65dp"
         android:layout_height="58dp"
-        android:layout_marginEnd="264dp"
+        android:layout_marginEnd="288dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
         android:hint="#"
@@ -60,15 +87,31 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/et_player_name"
-        android:layout_width="260dp"
+        android:id="@+id/et_player_fname"
+        android:layout_width="112dp"
         android:layout_height="58dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="188dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
-        android:hint="NAME"
+        android:hint="FIRST"
+        android:inputType="textPersonName"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <EditText
+        android:id="@+id/et_player_lname"
+        android:layout_width="167dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="84dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-smallcaps"
+        android:hint="LAST"
         android:inputType="textPersonName"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,38 +122,27 @@
         android:id="@+id/button"
         android:layout_width="95dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="256dp"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="onDoneClick"
         android:text="DONE"
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_player_name" />
+        app:layout_constraintTop_toBottomOf="@+id/et_player_fname" />
 
     <Button
         android:id="@+id/btn_clear"
         android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="256dp"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="onClearClick"
         android:text="CLEAR"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_player_name" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="33dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_player_num"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:layout_constraintTop_toBottomOf="@+id/et_player_fname" />
 
 </android.support.constraint.ConstraintLayout>
