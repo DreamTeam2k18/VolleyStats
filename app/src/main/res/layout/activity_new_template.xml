@@ -186,10 +186,10 @@
 
             <CheckBox
                 android:id="@+id/dig"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CheckBox" />
+                android:text="DIG"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/net_vio"
