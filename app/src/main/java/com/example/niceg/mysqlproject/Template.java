@@ -24,4 +24,8 @@ public class Template {
         CharSequence nameText = name.getText();
         m_name = (String)nameText;
     }
+
+    public String getNameEmma(){
+        return m_name;
+    }
 }

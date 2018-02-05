@@ -4,40 +4,44 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TemplatesMenu extends AppCompatActivity {
 
     //Template[] templates;
     //Template templates[] = new Template;
 
-    Template[] templates = new Template[4];
-//    Template basic;
-//    Template intermediate;
-//    Template comprehensive;
-//    Template comprehensive2;
+    //Template[] templates = new Template[4];
 
-    CheckBox[] checkBoxes = new CheckBox[0];
+    List templatesList = new ArrayList();
+    Template basic = new Template("basic", false, false);
+    Template intermediate = new Template("intermediate", false, false);
+    Template comprehensive = new Template("comprehensive", false, false);
+    Template comprehensive2 = new Template("comprehensive2", false, false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates_menu);
 
-//        for(int i = 0; i < 4; i++) {
-//            new CheckBox()templates[i]
-//        }
+        templatesList.add(basic);
+        templatesList.add(intermediate);
+        templatesList.add(comprehensive);
+        templatesList.add(comprehensive2);
 
-        //Bundle extras = getIntent().getExtras();
-        //if (extras != null) {
-            //String value = extras.getString("btnName");
         String s = getIntent().getStringExtra("btnName");
 
-        //}
-        newTemplate(s);
+        if(s != null){
+            Template t = new Template(s, false, false);
 
+            templatesList.add(t);
+        }
+
+        newTemplate(templatesList);
     }
 
     public void onSettingsClick(View view) {
@@ -48,61 +52,26 @@ public class TemplatesMenu extends AppCompatActivity {
     public void onAddClick(View view) {
         Intent intent = new Intent(this, NewTemplate.class);
         startActivity(intent);
+     }
 
-//        RadioButton radioButton = new RadioButton(this);
-//        radioButton.layout(0,16,24,0);
-//        radioButton.setText("test");
-//        radioButton.setTextSize(30);
-//        //radioButton.setTextColor(111);
-//
-//
-//
-//
-//        RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
-//        rg.addView(radioButton);
+     public void newTemplate(List list) {
+        //loop through list and make buttons for each template
 
+         for (int i = 0; i < list.size(); i++) {
 
+             Template temp = (Template)list.get(i);
+
+             RadioButton radioButton = new RadioButton(this);
+             radioButton.layout(0,16,24,0);
+             radioButton.setText(temp.getNameEmma());
+             radioButton.setTextSize(30);
+
+             RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
+             rg.addView(radioButton);
+         }
 
      }
 
-     public void newTemplate(String name) {
-         RadioButton radioButton = new RadioButton(this);
-         radioButton.layout(0,16,24,0);
-         radioButton.setText(name);
-         radioButton.setTextSize(30);
-         //radioButton.setId(0);
-         //radioButton.setTextColor(111);
-
-         RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
-         rg.addView(radioButton);
-     }
-
-//    public void onBasicEditClick(View view) {
-//        Intent intent = new Intent(this, .class);
-//        startActivity(intent);
-//    }
-
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.checkBoxB:
-                if (checked)
-
-                    break;
-            case R.id.checkBoxI:
-                if (checked)
-
-                    // Pirates are the best
-                    break;
-            case R.id.checkBoxC:
-                if (checked)
-                    // Ninjas rule
-                    break;
-        }
-    }
 
 
 }
