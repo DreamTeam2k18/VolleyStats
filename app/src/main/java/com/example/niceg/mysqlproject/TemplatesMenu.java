@@ -35,12 +35,12 @@ public class TemplatesMenu extends AppCompatActivity {
 //            new CheckBox()templates[i]
 //        }
 
-        Bundle extras = getIntent().getExtras();
-        //if (extras != null) {
-            String value = extras.getString("btnName");
-
-        //}
-        newTemplate(value);
+//        Bundle extras = getIntent().getExtras();
+//        //if (extras != null) {
+//            String value = extras.getString("btnName");
+//
+//        //}
+//        newTemplate(value);
 
     }
 
