@@ -1,10 +1,9 @@
 package com.example.niceg.mysqlproject;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class NewTemplate extends AppCompatActivity {
@@ -40,15 +39,17 @@ public class NewTemplate extends AppCompatActivity {
     public void onDoneClick(View view) {
         TextView name;
         CharSequence nameText;
+        String finalName;
         name = (TextView) findViewById(R.id.name);
         nameText = name.getText();
-        templateName = nameText;
+        finalName = nameText.toString();
+        templateName = finalName;
 
 
         //Template tmp = new Template(findViewById(R.id.name), findViewById(R.id.srv_rcv_0), findViewById(R.id.srv_p));
 
         Intent intent = new Intent(this, TemplatesMenu.class);
-        intent.putExtra("btnName", templateName);
+        intent.putExtra("btnName", finalName);
         //RadioButton radioButton = (RadioButton) findViewById(R.id.)
         startActivity(intent);
     }

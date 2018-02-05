@@ -1,17 +1,12 @@
 package com.example.niceg.mysqlproject;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import java.lang.reflect.Array;
 
 public class TemplatesMenu extends AppCompatActivity {
 
@@ -35,12 +30,13 @@ public class TemplatesMenu extends AppCompatActivity {
 //            new CheckBox()templates[i]
 //        }
 
-//        Bundle extras = getIntent().getExtras();
-//        //if (extras != null) {
-//            String value = extras.getString("btnName");
-//
-//        //}
-//        newTemplate(value);
+        //Bundle extras = getIntent().getExtras();
+        //if (extras != null) {
+            //String value = extras.getString("btnName");
+        String s = getIntent().getStringExtra("btnName");
+
+        //}
+        newTemplate(s);
 
     }
 
