@@ -3,11 +3,12 @@ package com.example.niceg.mysqlproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import java.io.Serializable;
 
-public class Home extends Activity {
+public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

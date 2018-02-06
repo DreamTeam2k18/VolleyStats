@@ -1,6 +1,7 @@
 package com.example.niceg.mysqlproject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,15 +9,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.transform.Templates;
+
 public class TemplatesMenu extends AppCompatActivity {
-    VolleyStats vol;// = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
-//    List templatesList = new ArrayList();
-    Template basic = new Template("basic", false, false);
-    Template intermediate = new Template("intermediate", false, false);
-    Template comprehensive = new Template("comprehensive", false, false);
-    Template comprehensive2 = new Template("comprehensive2", false, false);
+    VolleyStats vol;
+    Template basic = new Template("BASIC", false, false);
+    Template intermediate = new Template("INTERMEDIATE", false, false);
+    Template comprehensive = new Template("COMPREHENSIVE", false, false);
+    Template comprehensive2 = new Template("COMPREHENSIVE2", false, false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +34,6 @@ public class TemplatesMenu extends AppCompatActivity {
             vol.templatesList.add(comprehensive2);
         }
 
-        //String s = getIntent().getStringExtra("btnName");
-        //vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
-//        if(s != null){
-//            Template t = new Template(s, false, false);
-//
-//            vol.templatesList.add(t);
-//        }
-
         newTemplate(vol.templatesList);
     }
 
@@ -48,7 +43,14 @@ public class TemplatesMenu extends AppCompatActivity {
     }
 
     public void onAddClick(View view) {
+
+        //Bundle b = new Bundle();
+        //b.putSerializable("list", vol);
+
         Intent intent = new Intent(this, NewTemplate.class);
+
+        //intent.putExtra("listBundle", b);
+
         intent.putExtra("volleyStatsClass2", (Serializable) vol);
 
         startActivity(intent);
@@ -65,6 +67,7 @@ public class TemplatesMenu extends AppCompatActivity {
              radioButton.layout(0,16,24,0);
              radioButton.setText(temp.getNameEmma());
              radioButton.setTextSize(30);
+             //radioButton.setTextColor(Color.parseColor("#aaa"));
 
              RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
              rg.addView(radioButton);
@@ -72,6 +75,8 @@ public class TemplatesMenu extends AppCompatActivity {
 
      }
 
-
+     public VolleyStats getVol() {
+        return vol;
+     }
 
 }

@@ -13,10 +13,17 @@ public class NewTemplate extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Bundle bundle = getIntent().getBundleExtra("b");
+        //bundle.putSerializable("list", vol);
+
+//        TemplatesMenu templatesMenu = new TemplatesMenu();
+//        vol = templatesMenu.getVol();
+        //vol = new VolleyStats();
+        vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass2");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_template);
 
-        vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass2");
 
         TextView name;
         name = (TextView) findViewById(R.id.name);

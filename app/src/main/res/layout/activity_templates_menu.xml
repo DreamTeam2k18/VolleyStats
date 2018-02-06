@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
     tools:context="com.example.niceg.mysqlproject.TemplatesMenu">
 
     <ImageButton
@@ -88,6 +89,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addBtn">
+                <!--android:textAppearance="@android:style/TextAppearance.Material.Small"-->
 
                 <!--<RadioButton-->
                     <!--android:id="@+id/checkBoxB"-->
