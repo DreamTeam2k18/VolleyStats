@@ -29,7 +29,8 @@
             android:label="@string/title_activity_school_info" />
         <activity android:name=".PlayerInfo" />
         <activity android:name=".TemplatesMenu" />
-        <activity android:name=".NewTemplate"></activity>
+        <activity android:name=".NewTemplate" />
+        <activity android:name=".TakeStats"></activity>
     </application>
 
 </manifest>
