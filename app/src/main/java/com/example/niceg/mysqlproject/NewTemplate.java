@@ -9,17 +9,13 @@ import android.widget.TextView;
 public class NewTemplate extends AppCompatActivity {
 
     CharSequence templateName = "";
-    VolleyStats vol;// = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
+    static VolleyStats vol;
+    static final int FROM_NEW_TEMPLATE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Bundle bundle = getIntent().getBundleExtra("b");
-        //bundle.putSerializable("list", vol);
-
-//        TemplatesMenu templatesMenu = new TemplatesMenu();
-//        vol = templatesMenu.getVol();
-        //vol = new VolleyStats();
-        vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass2");
+        TemplatesMenu templatesMenu = new TemplatesMenu();
+        vol = templatesMenu.getVol();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_template);
@@ -59,8 +55,11 @@ public class NewTemplate extends AppCompatActivity {
         vol.templatesList.add(newTemp);
 
         Intent intent = new Intent(this, TemplatesMenu.class);
-        intent.putExtra("volleyStatsClass", vol);
 
-        startActivity(intent);
+        startActivityForResult(intent, FROM_NEW_TEMPLATE);
+    }
+
+    public static VolleyStats getVolNewTemplate() {
+        return vol;
     }
 }

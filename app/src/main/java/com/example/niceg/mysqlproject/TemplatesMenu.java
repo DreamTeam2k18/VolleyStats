@@ -1,5 +1,7 @@
 package com.example.niceg.mysqlproject;
 
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,15 +17,23 @@ import java.util.List;
 import javax.xml.transform.Templates;
 
 public class TemplatesMenu extends AppCompatActivity {
-    VolleyStats vol;
+    static VolleyStats vol;
     Template basic = new Template("BASIC", false, false);
     Template intermediate = new Template("INTERMEDIATE", false, false);
     Template comprehensive = new Template("COMPREHENSIVE", false, false);
-    Template comprehensive2 = new Template("COMPREHENSIVE2", false, false);
+    Template comprehensive2 = new Template("COMPREHENSIVE WITHOUT UNFORCED ERRORS", false, false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
+        ComponentName sender = getCallingActivity();
+
+        if(sender != null){
+            NewTemplate newTemplate = new NewTemplate();
+            vol = newTemplate.getVolNewTemplate();
+        }
+        else {
+            vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates_menu);
 
@@ -43,16 +53,7 @@ public class TemplatesMenu extends AppCompatActivity {
     }
 
     public void onAddClick(View view) {
-
-        //Bundle b = new Bundle();
-        //b.putSerializable("list", vol);
-
         Intent intent = new Intent(this, NewTemplate.class);
-
-        //intent.putExtra("listBundle", b);
-
-        intent.putExtra("volleyStatsClass2", (Serializable) vol);
-
         startActivity(intent);
      }
 
@@ -75,7 +76,7 @@ public class TemplatesMenu extends AppCompatActivity {
 
      }
 
-     public VolleyStats getVol() {
+     public static VolleyStats getVol() {
         return vol;
      }
 

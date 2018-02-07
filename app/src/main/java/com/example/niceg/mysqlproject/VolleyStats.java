@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class VolleyStats implements Serializable{
 
     public ArrayList<Template> templatesList;
-    //List templatesList = new ArrayList();
 
     VolleyStats() {
         templatesList = new ArrayList<Template>();

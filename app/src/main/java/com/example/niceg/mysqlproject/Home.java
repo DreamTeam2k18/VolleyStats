@@ -33,8 +33,6 @@ public class Home extends AppCompatActivity {
 
     public void onTemplatesClick(View view) {
         Intent intent = new Intent(this, TemplatesMenu.class);
-
-        //TRISTANS BULLSHIT
         VolleyStats emmasVolleyStats = new VolleyStats();
         intent.putExtra("volleyStatsClass", (Serializable) emmasVolleyStats);
         startActivity(intent);
