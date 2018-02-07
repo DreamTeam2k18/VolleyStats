@@ -50,7 +50,8 @@ public class NewTemplate extends AppCompatActivity {
         finalName = nameText.toString();
         templateName = finalName;
 
-        Template newTemp = new Template(finalName, false, false);
+        //gotta fix this later
+        Template newTemp = new Template(finalName);
         vol.templatesList.add(newTemp);
 
         Intent intent = new Intent(this, TemplatesMenu.class);

@@ -18,10 +18,19 @@ import javax.xml.transform.Templates;
 
 public class TemplatesMenu extends AppCompatActivity {
     static VolleyStats vol;
-    Template basic = new Template("BASIC", false, false);
-    Template intermediate = new Template("INTERMEDIATE", false, false);
-    Template comprehensive = new Template("COMPREHENSIVE", false, false);
-    Template comprehensive2 = new Template("COMPREHENSIVE WITHOUT UNFORCED ERRORS", false, false);
+    Template basic = new Template("BASIC", true, false, false, true,
+            true, false, false, false, false, false,
+            false, false, false, false, false);
+    Template intermediate = new Template("INTERMEDIATE", true, true, true, true,
+            true, true, true, true, false, false,
+            false, false, false, false, false);
+    Template comprehensive = new Template("COMPREHENSIVE", true, true, true, true,
+            true, true, true, true, true, true,
+            true, true, true, true, true);
+    Template comprehensive2 = new Template("COMPREHENSIVE WITHOUT UNFORCED ERRORS", true,
+            true, true, true, true, true, true,
+            true, true, true, false, false, false,
+            false, false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
