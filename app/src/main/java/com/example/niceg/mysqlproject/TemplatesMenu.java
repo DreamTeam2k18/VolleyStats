@@ -32,7 +32,9 @@ public class TemplatesMenu extends AppCompatActivity {
             vol = newTemplate.getVolNewTemplate();
         }
         else {
-            vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
+            Home h = new Home();
+            vol = h.getVolHome();
+            //vol = (VolleyStats) getIntent().getSerializableExtra("volleyStatsClass");
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates_menu);
@@ -57,6 +59,14 @@ public class TemplatesMenu extends AppCompatActivity {
         startActivity(intent);
      }
 
+    public void onDoneClick(View view) {
+        VolleyStats list = new VolleyStats();
+        list.setTemplatesList(vol);
+
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
+
      public void newTemplate(List list) {
         //loop through list and make buttons for each template
 
@@ -76,7 +86,7 @@ public class TemplatesMenu extends AppCompatActivity {
 
      }
 
-     public static VolleyStats getVol() {
+     public static VolleyStats getVolTemplatesMenu() {
         return vol;
      }
 

@@ -9,13 +9,17 @@ import java.util.ArrayList;
 
 public class VolleyStats implements Serializable{
 
-    public ArrayList<Template> templatesList;
+    public static ArrayList<Template> templatesList;
 
     VolleyStats() {
         templatesList = new ArrayList<Template>();
     }
 
-    public ArrayList<Template> getTemplatesList() {
+    public static ArrayList<Template> getTemplatesList() {
         return templatesList;
+    }
+
+    public void setTemplatesList(VolleyStats list) {
+        templatesList = list.templatesList;
     }
 }

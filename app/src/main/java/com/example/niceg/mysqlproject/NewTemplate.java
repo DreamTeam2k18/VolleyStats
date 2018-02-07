@@ -15,11 +15,10 @@ public class NewTemplate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         TemplatesMenu templatesMenu = new TemplatesMenu();
-        vol = templatesMenu.getVol();
+        vol = templatesMenu.getVolTemplatesMenu();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_template);
-
 
         TextView name;
         name = (TextView) findViewById(R.id.name);
