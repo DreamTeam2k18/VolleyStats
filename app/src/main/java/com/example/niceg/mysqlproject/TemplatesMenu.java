@@ -38,7 +38,8 @@ public class TemplatesMenu extends AppCompatActivity {
 
         if(sender != null){
             NewTemplate newTemplate = new NewTemplate();
-            vol = newTemplate.getVolNewTemplate();
+            Template temp = newTemplate.getVolNewTemplate();
+            vol.templatesList.add(temp);
         }
         else {
             Home h = new Home();
@@ -69,9 +70,6 @@ public class TemplatesMenu extends AppCompatActivity {
      }
 
     public void onDoneClick(View view) {
-        VolleyStats list = new VolleyStats();
-        list.setTemplatesList(vol);
-
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }

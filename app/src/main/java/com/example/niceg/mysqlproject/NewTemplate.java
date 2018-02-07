@@ -10,6 +10,7 @@ public class NewTemplate extends AppCompatActivity {
 
     CharSequence templateName = "";
     static VolleyStats vol;
+    static Template newTemplate;
     static final int FROM_NEW_TEMPLATE = 1;
 
     @Override
@@ -51,15 +52,15 @@ public class NewTemplate extends AppCompatActivity {
         templateName = finalName;
 
         //gotta fix this later
-        Template newTemp = new Template(finalName);
-        vol.templatesList.add(newTemp);
+        newTemplate = new Template(finalName);
+        //vol.templatesList.add(newTemp);
 
         Intent intent = new Intent(this, TemplatesMenu.class);
 
         startActivityForResult(intent, FROM_NEW_TEMPLATE);
     }
 
-    public static VolleyStats getVolNewTemplate() {
-        return vol;
+    public static Template getVolNewTemplate() {
+        return newTemplate;
     }
 }

@@ -17,9 +17,9 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        VolleyStats temp = new VolleyStats();
-        vol = temp;
-        vol.templatesList = temp.getTemplatesList();
+        if (vol == null) {
+            vol = new VolleyStats();
+        }
     }
 
     public void onSettingsClick(View view) {
@@ -44,7 +44,7 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public VolleyStats getVolHome() {
+    public static VolleyStats getVolHome() {
         return vol;
     }
 
