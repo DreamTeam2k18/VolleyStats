@@ -1,34 +1,28 @@
 package com.example.niceg.mysqlproject;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.transform.Templates;
 
 public class TemplatesMenu extends AppCompatActivity {
     static VolleyStats vol;
     Template basic = new Template("BASIC", true, false, false, true,
-            true, false, false, false, false, false,
+            true, false, false, false, false, false, false, false,
             false, false, false, false, false);
     Template intermediate = new Template("INTERMEDIATE", true, true, true, true,
-            true, true, true, true, false, false,
+            true, true, true, true, false, false, false, false,
             false, false, false, false, false);
     Template comprehensive = new Template("COMPREHENSIVE", true, true, true, true,
-            true, true, true, true, true, true,
+            true, true, true, true, true, true, true, true,
             true, true, true, true, true);
     Template comprehensive2 = new Template("COMPREHENSIVE WITHOUT UNFORCED ERRORS", true,
-            true, true, true, true, true, true,
+            true, true, true, true, true, true, true, true,
             true, true, true, false, false, false,
             false, false);
 

@@ -2,15 +2,12 @@ package com.example.niceg.mysqlproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 public class Home extends AppCompatActivity {
     static VolleyStats vol;
+    static Roster roster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +16,10 @@ public class Home extends AppCompatActivity {
 
         if (vol == null) {
             vol = new VolleyStats();
+        }
+
+        if(roster == null) {
+            roster = new Roster();
         }
     }
 
@@ -39,13 +40,15 @@ public class Home extends AppCompatActivity {
 
     public void onTemplatesClick(View view) {
         Intent intent = new Intent(this, TemplatesMenu.class);
-        //VolleyStats emmasVolleyStats = new VolleyStats();
-        //intent.putExtra("volleyStatsClass", (Serializable) emmasVolleyStats);
         startActivity(intent);
     }
 
     public static VolleyStats getVolHome() {
         return vol;
+    }
+
+    public static Roster getRosterHome() {
+        return roster;
     }
 
 }

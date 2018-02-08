@@ -109,10 +109,11 @@
 
             <CheckBox
                 android:id="@+id/srv_rcv_0"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SERVE RECEIVE 0" />
+                android:checked="false"
+                android:text="SERVE RECEIVE 0"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/srv_rcv_m"
@@ -206,11 +207,11 @@
                 android:text="FOOT FAULT" />
 
             <CheckBox
-                android:id="@+id/dbl_cnt"
-                android:textSize="20sp"
+                android:id="@+id/dbl_cntct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="DOUBLE CONTACT" />
+                android:text="DOUBLE CONTACT"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/lft"

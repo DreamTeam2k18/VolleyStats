@@ -29,4 +29,6 @@ public class Player {
         return  m_lname;
     }
 
+    public String getNum() { return m_num; }
+
 }

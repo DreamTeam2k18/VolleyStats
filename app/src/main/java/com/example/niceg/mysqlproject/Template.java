@@ -72,8 +72,9 @@ public class Template {
 
     public Template(String name, boolean srv_rcv_0, boolean srv_rcv_m, boolean ace,
                     boolean srv_p, boolean srv_m, boolean atk_kill, boolean atk_err,
-                    boolean atk_0, boolean ast, boolean dig, boolean net_vio,
-                    boolean ft_flt, boolean dbl_cntct, boolean lft, boolean out_rot) {
+                    boolean atk_0, boolean ast, boolean dig, boolean blk_solo,
+                    boolean blk_ast, boolean net_vio, boolean ft_flt, boolean dbl_cntct,
+                    boolean lft, boolean out_rot) {
         m_name = name;
         m_srv_rcv_0 = srv_rcv_0;
         m_srv_rcv_m = srv_rcv_m;
@@ -84,6 +85,8 @@ public class Template {
         m_atk_err = atk_err;
         m_atk_0 = atk_0;
         m_ast = ast;
+        m_blk_solo = blk_solo;
+        m_blk_ast = blk_ast;
         m_dig = dig;
         m_net_vio = net_vio;
         m_ft_flt = ft_flt;
@@ -103,6 +106,8 @@ public class Template {
         m_atk_err = copy.m_atk_err;
         m_atk_0 = copy.m_atk_0;
         m_ast = copy.m_ast;
+        m_blk_solo = copy.m_blk_solo;
+        m_blk_ast = copy.m_blk_ast;
         m_dig = copy.m_dig;
         m_net_vio = copy.m_net_vio;
         m_ft_flt = copy.m_ft_flt;
