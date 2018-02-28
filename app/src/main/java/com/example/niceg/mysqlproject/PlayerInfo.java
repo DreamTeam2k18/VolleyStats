@@ -1,11 +1,14 @@
 package com.example.niceg.mysqlproject;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -18,8 +21,17 @@ public class PlayerInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_info);
 
-        Home home = new Home();
-        roster = home.getRosterHome();
+        ComponentName sender = getCallingActivity();
+
+        if(sender != null){
+            NewPlayer newPlayer = new NewPlayer();
+            Player temp = newPlayer.getNewPlayer();
+            roster.playersList.add(temp);
+        }
+        else {
+            Home home = new Home();
+            roster = home.getRosterHome();
+        }
 
         drawPlayers(roster.playersList);
     }
@@ -41,11 +53,13 @@ public class PlayerInfo extends AppCompatActivity {
 
     public void onAddClick(View view) {
         //Save all input text
-        savePlayers(roster.playersList);
-        Player newPlayer = new Player();
-        roster.playersList.add(newPlayer);
-        clearPlayers();
-        drawPlayers(roster.playersList);
+//        savePlayers(roster.playersList);
+//        Player newPlayer = new Player();
+//        roster.playersList.add(newPlayer);
+//        clearPlayers();
+//        drawPlayers(roster.playersList);
+        Intent intent = new Intent(this, NewPlayer.class);
+        startActivity(intent);
     }
 
     public void drawPlayers(List newPlayer) {
@@ -55,31 +69,44 @@ public class PlayerInfo extends AppCompatActivity {
 
             LinearLayout player = new LinearLayout(this);
 
-            EditText num = new EditText(this);
-            EditText fname = new EditText(this);
-            EditText lname = new EditText(this);
+            TextView num = new TextView(this);
+            TextView fname = new TextView(this);
+            TextView lname = new TextView(this);
+
+            ImageButton trash = new ImageButton(this);
+            trash.setImageResource(android.R.drawable.ic_menu_delete);
+            trash.setBackgroundColor(0);
+
+            ImageButton edit = new ImageButton(this);
+            edit.setImageResource(android.R.drawable.ic_menu_edit);
+            edit.setBackgroundColor(0);
 
             num.layout(0, 10, 0, 0 );
-            num.setHint("#");
             num.setText(temp.getNum());
+            num.setTextSize(20);
             num.setAllCaps(true);
-            num.setEms(2);
+            num.setMinWidth(150);
+            num.setMaxWidth(150);
             num.setMaxLines(1);
 
             fname.layout(0, 10, 0, 0);
-            fname.setHint("First");
             fname.setText(temp.getFname());
+            fname.setTextSize(20);
             fname.setAllCaps(true);
-            fname.setEms(7);
+            fname.setMinWidth(400);
+            fname.setMaxWidth(500);
             fname.setMaxLines(1);
 
             lname.layout(0, 10, 0, 0);
-            lname.setHint("Last");
             lname.setText(temp.getLname());
+            lname.setTextSize(20);
             lname.setAllCaps(true);
-            lname.setEms(7);
+            lname.setMinWidth(500);
+            lname.setMaxWidth(600);
             lname.setMaxLines(1);
 
+            player.addView(trash);
+            player.addView(edit);
             player.addView(num);
             player.addView(fname);
             player.addView(lname);
@@ -89,16 +116,16 @@ public class PlayerInfo extends AppCompatActivity {
 
         }
     }
-
-    public void clearPlayers() {
-       LinearLayout group = findViewById(R.id.playerGroup);
-       group.removeAllViews();
-    }
-
-    public void savePlayers(List list) {
-        LinearLayout group = findViewById(R.id.playerGroup);
-
-        int count = group.getChildCount();
+//
+//    public void clearPlayers() {
+//       LinearLayout group = findViewById(R.id.playerGroup);
+//       group.removeAllViews();
+//    }
+//
+//    public void savePlayers(List list) {
+//        LinearLayout group = findViewById(R.id.playerGroup);
+//
+//        int count = group.getChildCount();
         //Get All Views in the playerGroup
 
 //        for(int i=0; i < count;i++) {
@@ -113,4 +140,4 @@ public class PlayerInfo extends AppCompatActivity {
 
 
     }
-}
+
