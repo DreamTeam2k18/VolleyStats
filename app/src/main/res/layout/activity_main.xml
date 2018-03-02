@@ -61,6 +61,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-smallcaps"
+        android:onClick="onNew"
         android:text="new user"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/btnLogin"

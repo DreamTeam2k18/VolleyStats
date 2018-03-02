@@ -31,7 +31,8 @@
         <activity android:name=".TemplatesMenu" />
         <activity android:name=".NewTemplate" />
         <activity android:name=".TakeStats" />
-        <activity android:name=".NewPlayer"></activity>
+        <activity android:name=".NewPlayer" />
+        <activity android:name=".NewUser"></activity>
     </application>
 
 </manifest>

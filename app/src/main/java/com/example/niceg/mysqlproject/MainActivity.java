@@ -32,4 +32,9 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra("volleyStatsClass", emmasVolleyStats);
         startActivity(intent);
     }
+
+    public void onNew(View view) {
+        Intent intent = new Intent(this, NewUser.class);
+        startActivity(intent);
+    }
 }
