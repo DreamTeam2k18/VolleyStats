@@ -72,7 +72,7 @@ public class NewTemplate extends AppCompatActivity {
 
         newTemplate = new Template(finalName, m_srv_rcv_0, m_srv_rcv_m, m_ace,
                 m_srv_p, m_srv_m, m_atk_kill, m_atk_err, m_atk_0, m_ast, m_dig,
-                m_blk_solo, m_blk_ast, m_net_vio, m_ft_flt, m_dbl_cntct, m_lft, m_out_rot);
+                m_blk_solo, m_blk_ast, m_net_vio, m_ft_flt, m_dbl_cntct, m_lft, m_out_rot, false);
 
         Intent intent = new Intent(this, TemplatesMenu.class);
 

@@ -62,6 +62,38 @@ public class PlayerInfo extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onEditClick(View view) {
+        Intent intent = new Intent(this, Home.class);
+        //intent.putExtra("player", )
+        startActivity(intent);
+    }
+
+    private View.OnClickListener ClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onEditClick(v);
+        }
+    };
+
+    private View.OnClickListener RemoveClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            removeOnClick(v);
+        }
+    };
+
+    public void removeOnClick(View view) {
+//        TextView num = findViewById(R.id.)
+//        TextView fname = new TextView(this);
+//        TextView lname = new TextView(this);
+//
+//        ImageButton trash = new ImageButton(this);
+//        ImageButton edit = new ImageButton(this);
+
+
+
+    }
+
     public void drawPlayers(List newPlayer) {
 
         for(int i = 0; i < newPlayer.size(); i++) {
@@ -76,10 +108,14 @@ public class PlayerInfo extends AppCompatActivity {
             ImageButton trash = new ImageButton(this);
             trash.setImageResource(android.R.drawable.ic_menu_delete);
             trash.setBackgroundColor(0);
+            trash.setOnClickListener(RemoveClickListener);
+            trash.setId(i);
 
             ImageButton edit = new ImageButton(this);
             edit.setImageResource(android.R.drawable.ic_menu_edit);
             edit.setBackgroundColor(0);
+            edit.setOnClickListener(ClickListener);
+            edit.setId(i);
 
             num.layout(0, 10, 0, 0 );
             num.setText(temp.getNum());
@@ -88,6 +124,7 @@ public class PlayerInfo extends AppCompatActivity {
             num.setMinWidth(150);
             num.setMaxWidth(150);
             num.setMaxLines(1);
+            num.setId(i);
 
             fname.layout(0, 10, 0, 0);
             fname.setText(temp.getFname());
@@ -96,6 +133,7 @@ public class PlayerInfo extends AppCompatActivity {
             fname.setMinWidth(400);
             fname.setMaxWidth(500);
             fname.setMaxLines(1);
+            fname.setId(i);
 
             lname.layout(0, 10, 0, 0);
             lname.setText(temp.getLname());
@@ -104,6 +142,7 @@ public class PlayerInfo extends AppCompatActivity {
             lname.setMinWidth(500);
             lname.setMaxWidth(600);
             lname.setMaxLines(1);
+            lname.setId(i);
 
             player.addView(trash);
             player.addView(edit);

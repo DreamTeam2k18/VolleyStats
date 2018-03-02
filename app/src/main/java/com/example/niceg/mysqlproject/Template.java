@@ -27,9 +27,11 @@ public class Template {
     public boolean m_dbl_cntct = false;
     public boolean m_lft = false;
     public boolean m_out_rot = false;
+    public boolean m_selected = false;
 
     public Template() {
         m_name = "";
+        m_selected = false;
         m_srv_rcv_0 = false;
         m_srv_rcv_m = false;
         m_ace = false;
@@ -51,6 +53,7 @@ public class Template {
 
     public Template(String name) {
         m_name = name;
+        m_selected = false;
         m_srv_rcv_0 = false;
         m_srv_rcv_m = false;
         m_ace = false;
@@ -74,8 +77,9 @@ public class Template {
                     boolean srv_p, boolean srv_m, boolean atk_kill, boolean atk_err,
                     boolean atk_0, boolean ast, boolean dig, boolean blk_solo,
                     boolean blk_ast, boolean net_vio, boolean ft_flt, boolean dbl_cntct,
-                    boolean lft, boolean out_rot) {
+                    boolean lft, boolean out_rot, boolean selected) {
         m_name = name;
+        m_selected = selected;
         m_srv_rcv_0 = srv_rcv_0;
         m_srv_rcv_m = srv_rcv_m;
         m_ace = ace;
@@ -97,6 +101,7 @@ public class Template {
 
     public Template(Template copy) {
         m_name = copy.m_name;
+        m_selected = copy.m_selected;
         m_srv_rcv_0 = copy.m_srv_rcv_0;
         m_srv_rcv_m = copy.m_srv_rcv_m;
         m_ace = copy.m_ace;

@@ -43,6 +43,11 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onNewClick(View view) {
+        Intent intent = new Intent(this, TakeStats.class);
+        startActivity(intent);
+    }
+
     public static VolleyStats getVolHome() {
         return vol;
     }

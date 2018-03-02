@@ -14,17 +14,17 @@ public class TemplatesMenu extends AppCompatActivity {
     static VolleyStats vol;
     Template basic = new Template("BASIC", true, false, false, true,
             true, false, false, false, false, false, false, false,
-            false, false, false, false, false);
+            false, false, false, false, false, false);
     Template intermediate = new Template("INTERMEDIATE", true, true, true, true,
             true, true, true, true, false, false, false, false,
-            false, false, false, false, false);
+            false, false, false, false, false, false);
     Template comprehensive = new Template("COMPREHENSIVE", true, true, true, true,
             true, true, true, true, true, true, true, true,
-            true, true, true, true, true);
+            true, true, true, true, true, false);
     Template comprehensive2 = new Template("COMPREHENSIVE WITHOUT UNFORCED ERRORS", true,
             true, true, true, true, true, true, true, true,
             true, true, true, false, false, false,
-            false, false);
+            false, false, false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +64,27 @@ public class TemplatesMenu extends AppCompatActivity {
      }
 
     public void onDoneClick(View view) {
+        RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
+        int radioButtonID = rg.getCheckedRadioButtonId();
+        View radioButton = rg.findViewById(radioButtonID);
+        int idx = rg.indexOfChild(radioButton);
+
+        RadioButton r = (RadioButton)  rg.getChildAt(idx);
+        String selectedtext = r.getText().toString();
+
+        checkRadioBoxes(vol.templatesList, selectedtext);
+
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
+    }
+
+    public void checkRadioBoxes(List list, String name) {
+        for (int i = 0; i < list.size(); i++) {
+            Template temp = (Template)list.get(i);
+            if (temp.getNameEmma() == name) {
+                temp.m_selected = true;
+            }
+        }
     }
 
      public void newTemplate(List list) {

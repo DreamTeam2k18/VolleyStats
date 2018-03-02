@@ -61,6 +61,7 @@
         android:background="@android:color/transparent"
         android:elevation="0dp"
         android:fontFamily="sans-serif-smallcaps"
+        android:onClick="onNewClick"
         android:text="NEW MATCH"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
