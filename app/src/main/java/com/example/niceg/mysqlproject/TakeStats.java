@@ -2,6 +2,9 @@ package com.example.niceg.mysqlproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,21 @@ public class TakeStats extends AppCompatActivity {
     }
 
     public void drawStats() {
-        
+        for(int i = 0; i < roster.playersList.size(); i++) {
+            LinearLayout info = new LinearLayout(this);
+
+            TextView num = new TextView(this);
+            TextView player = new TextView(this);
+
+            num.setText(roster.playersList.get(i).getNum());
+            player.setText(roster.playersList.get(i).getFname());
+
+            info.addView(num);
+            info.addView(player);
+
+            LinearLayout layout = findViewById(R.id.playersGroup);
+
+            layout.addView(info);
+        }
     }
 }
