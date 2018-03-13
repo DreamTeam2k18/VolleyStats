@@ -100,6 +100,11 @@ public class TemplatesMenu extends AppCompatActivity {
              radioButton.setTextSize(30);
              //radioButton.setTextColor(Color.parseColor("#aaa"));
 
+             if(temp.getNameEmma() == "INTERMEDIATE") {
+                 radioButton.setSelected(true);
+                 temp.m_selected = true;
+             }
+
              RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
              rg.addView(radioButton);
          }

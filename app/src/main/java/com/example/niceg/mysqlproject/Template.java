@@ -3,6 +3,9 @@ package com.example.niceg.mysqlproject;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Emma on 2/2/2018.
  */
@@ -130,4 +133,50 @@ public class Template {
     public String getNameEmma(){
         return m_name;
     }
+
+    public int getSize() {
+        int count = 0;
+        if(m_srv_rcv_0 == true) {count++;}
+        if(m_srv_rcv_m == true) {count++;}
+        if(m_ace == true) {count++;}
+        if(m_srv_p == true) {count++;}
+        if(m_srv_m == true) {count++;}
+        if(m_atk_kill == true) {count++;}
+        if(m_atk_err == true) {count++;}
+        if(m_atk_0 == true) {count++;}
+        if(m_ast == true) {count++;}
+        if(m_blk_solo == true) {count++;}
+        if(m_blk_ast == true) {count++;}
+        if(m_dig == true) {count++;}
+        if(m_net_vio == true) {count++;}
+        if(m_ft_flt == true) {count++;}
+        if(m_dbl_cntct == true) {count++;}
+        if(m_lft == true) {count++;}
+        if(m_out_rot == true) {count++;}
+        return count;
+    }
+    public ArrayList<String> getNames() {
+        ArrayList<String> list = new ArrayList<String>();
+
+        if(m_srv_rcv_0 == true) {list.add("SR0");}
+        if(m_srv_rcv_m == true) {list.add("SR-");}
+        if(m_ace == true) {list.add("ACE");}
+        if(m_srv_p == true) {list.add("S+");}
+        if(m_srv_m == true) {list.add("S-");}
+        if(m_atk_kill == true) {list.add("A+");}
+        if(m_atk_err == true) {list.add("A-");}
+        if(m_atk_0 == true) {list.add("A0");}
+        if(m_ast == true) {list.add("AST");}
+        if(m_blk_solo == true) {list.add("BS");}
+        if(m_blk_ast == true) {list.add("BA");}
+        if(m_dig == true) {list.add("DIG");}
+        if(m_net_vio == true) {list.add("NV");}
+        if(m_ft_flt == true) {list.add("FF");}
+        if(m_dbl_cntct == true) {list.add("DC");}
+        if(m_lft == true) {list.add("LFT");}
+        if(m_out_rot == true) {list.add("OR");}
+
+        return list;
+    }
+
 }
