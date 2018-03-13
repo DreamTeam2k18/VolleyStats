@@ -179,4 +179,28 @@ public class Template {
         return list;
     }
 
+    public ArrayList<String> getRealNames() {
+        ArrayList<String> list = new ArrayList<String>();
+
+        if(m_srv_rcv_0 == true) {list.add("m_srv_rcv_0");}
+        if(m_srv_rcv_m == true) {list.add("m_srv_rcv_m");}
+        if(m_ace == true) {list.add("m_ace");}
+        if(m_srv_p == true) {list.add("m_srv_p");}
+        if(m_srv_m == true) {list.add("m_srv_m");}
+        if(m_atk_kill == true) {list.add("m_atk_kill");}
+        if(m_atk_err == true) {list.add("m_atk_err");}
+        if(m_atk_0 == true) {list.add("m_atk_0");}
+        if(m_ast == true) {list.add("m_ast");}
+        if(m_blk_solo == true) {list.add("m_blk_solo");}
+        if(m_blk_ast == true) {list.add("m_blk_ast");}
+        if(m_dig == true) {list.add("m_dig");}
+        if(m_net_vio == true) {list.add("m_net_vio");}
+        if(m_ft_flt == true) {list.add("m_ft_flt");}
+        if(m_dbl_cntct == true) {list.add("m_dbl_cntct");}
+        if(m_lft == true) {list.add("m_lft");}
+        if(m_out_rot == true) {list.add("m_out_rot");}
+
+        return list;
+    }
+
 }

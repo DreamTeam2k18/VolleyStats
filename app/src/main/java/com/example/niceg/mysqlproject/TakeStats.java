@@ -19,6 +19,7 @@ public class TakeStats extends AppCompatActivity {
     static Template template;
     static VolleyStats vol;
     static int m_size;
+    int globaltest;
 
     //Default values in case user hasn't accessed templatesmenu yet
     Template basic = new Template("BASIC", true, false, false, true,
@@ -72,21 +73,15 @@ public class TakeStats extends AppCompatActivity {
                 template = temp;
             }
         }
-        
+
         drawStats();
     }
-
-
-//    private View.OnClickListener addOne = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            v.findViewById()
-//        }
-//    };
 
     public void drawStats() {
         ArrayList<String> list = template.getNames();
         LinearLayout info = new LinearLayout(this);
+        LinearLayout stats = new LinearLayout(this);
+        LinearLayout layout = findViewById(R.id.playersGroup);
 
         for(int j = 0; j < template.getNames().size(); j++) {
             TextView stat = new TextView(this);
@@ -96,12 +91,12 @@ public class TakeStats extends AppCompatActivity {
             stat.setMaxWidth(100);
             stat.setTextSize(20);
 
-            info.addView(stat);
+            stats.addView(stat);
         }
 
+        layout.addView(stats);
+
         for(int i = 0; i < roster.playersList.size(); i++) {
-
-
             TextView num = new TextView(this);
             TextView player = new TextView(this);
 
@@ -109,34 +104,72 @@ public class TakeStats extends AppCompatActivity {
             num.setMaxWidth(50);
             num.setMinWidth(50);
             num.setTextSize(20);
-            num.setPaddingRelative(10,10,10,10);
+            num.setPaddingRelative(10, 10, 10, 10);
 
             player.setText(roster.playersList.get(i).getFname());
             player.setMinWidth(200);
             player.setMaxWidth(200);
             player.setTextSize(20);
-            player.setPaddingRelative(10,10,10,10);
+            player.setPaddingRelative(10, 10, 10, 10);
 
             info.addView(num);
             info.addView(player);
 
-            for(int j = 0; j < template.getNames().size(); j++) {
+            for (int j = 0; j < template.getNames().size(); j++) {
+                //Final level bullshit that doesnt make any sense and I hate it.
+                final int x = i;
+                final int y = j;
                 //TextView btn = new TextView(this);
-                Button btn = new Button(this);
-                btn.setText("0");
+                CharSequence text = "0";
+                final Button btn = new Button(this);
+
+                for(int k = 0; k < roster.playersList.get(x).playerStats.size();k++){
+                    //Found the corresponding btn stat name
+                    if(roster.playersList.get(x).playerStats.get(k).m_name.equals(template.getRealNames().get(j))){
+                        text = (Integer.toString(roster.playersList.get(x).playerStats.get(k).m_value));
+                    }
+                }
+
+                btn.setText(text);
                 btn.setBackgroundColor(333);
                 btn.setWidth(40);
                 btn.setHeight(30);
                 //btn.setId(j);
-                //btn.setOnClickListener(addOne);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        //Set integer used for button
+                        int volatileInt = 0;
+                        //int in = Integer.valueOf((String) btn.getText());
+                        int in  = 0;
+
+                        for(int k = 0; k < roster.playersList.get(x).playerStats.size();k++){
+                            //Found the corresponding btn stat name
+                            if(roster.playersList.get(x).playerStats.get(k).m_name.equals(template.getRealNames().get(y))){
+                                in = roster.playersList.get(x).playerStats.get(k).m_value;
+                            }
+                        }
+
+                        //Incrememnt stored value
+                        in++;
+                        CharSequence newText;
+                        newText = (CharSequence) Integer.toString(in);
+                        btn.setText(newText);
+
+                        //Store Incremented value
+                        for(int k = 0; k < roster.playersList.get(x).playerStats.size();k++){
+                            //Found the corresponding btn stat name
+                            if(roster.playersList.get(x).playerStats.get(k).m_name.equals(template.getRealNames().get(y))){
+                                roster.playersList.get(x).playerStats.get(k).m_value = in;
+                            }
+                        }
+                    }
+                });
 
                 info.addView(btn);
 
             }
-
-            LinearLayout layout = findViewById(R.id.playersGroup);
-
-            layout.addView(info);
+            layout = findViewById(R.id.playersGroup);
+                layout.addView(info);
         }
     }
 }
