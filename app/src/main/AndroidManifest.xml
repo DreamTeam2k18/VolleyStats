@@ -13,7 +13,9 @@
         android:theme="@style/Theme.AppCompat">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,17 +24,27 @@
         </activity>
         <activity
             android:name=".Home"
-            android:label="@string/title_activity_home" />
-        <activity android:name=".SettingsActivity" />
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SettingsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SchoolInfo"
-            android:label="@string/title_activity_school_info" />
-        <activity android:name=".PlayerInfo" />
-        <activity android:name=".TemplatesMenu" />
-        <activity android:name=".NewTemplate" />
-        <activity android:name=".TakeStats" />
-        <activity android:name=".NewPlayer" />
-        <activity android:name=".NewUser"></activity>
+            android:label="@string/title_activity_school_info"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PlayerInfo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TemplatesMenu"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NewTemplate"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TakeStats"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".NewPlayer"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NewUser"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

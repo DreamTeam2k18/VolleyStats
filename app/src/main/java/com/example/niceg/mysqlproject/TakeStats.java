@@ -1,10 +1,14 @@
 package com.example.niceg.mysqlproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -83,13 +87,38 @@ public class TakeStats extends AppCompatActivity {
         LinearLayout stats = new LinearLayout(this);
         LinearLayout layout = findViewById(R.id.playersGroup);
 
-        for(int j = 0; j < template.getNames().size(); j++) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
+        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int screenHeight = displayMetrics.heightPixels;
+
+        for(int j = -2; j < template.getNames().size(); j++) {
             TextView stat = new TextView(this);
 
-            stat.setText(list.get(j));
-            stat.setMinWidth(100);
-            stat.setMaxWidth(100);
-            stat.setTextSize(20);
+            if(j == -2) {
+                stat.setText("#");
+                stat.setMinWidth(70);
+                stat.setMaxWidth(70);
+            }
+            else if(j == -1) {
+                stat.setText("NAME");
+                if(template.getNames().size() > 8) {
+                    stat.setMinWidth(200);
+                    stat.setMaxWidth(200);
+                }
+                else {
+                    stat.setMinWidth(300);
+                    stat.setMaxWidth(300);
+                }
+            }
+            else {
+                stat.setText(list.get(j));
+                stat.setMinWidth(screenWidth / (template.getNames().size() + 2));
+                stat.setMaxWidth(screenWidth / (template.getNames().size() + 2));
+            }
+
+            stat.setTextSize(16);
 
             stats.addView(stat);
         }
@@ -103,14 +132,31 @@ public class TakeStats extends AppCompatActivity {
             num.setText(roster.playersList.get(i).getNum());
             num.setMaxWidth(50);
             num.setMinWidth(50);
-            num.setTextSize(20);
+            num.setTextSize(12);
             num.setPaddingRelative(10, 10, 10, 10);
 
             player.setText(roster.playersList.get(i).getFname());
-            player.setMinWidth(200);
-            player.setMaxWidth(200);
-            player.setTextSize(20);
+            //THIS WONT WORK WITH MULTIPLE PLAYERSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+//            player.setMinWidth(roster.playersList.get(i).getFname().length() * 100);
+//            player.setMaxWidth(roster.playersList.get(i).getFname().length() * 100);
+
+            if(template.getNames().size() > 8) {
+                player.setMinWidth(200);
+                player.setMaxWidth(200);
+            }
+            else {
+                player.setMinWidth(300);
+                player.setMaxWidth(300);
+            }
+            player.setTextSize(12);
             player.setPaddingRelative(10, 10, 10, 10);
+
+            if((i % 2) == 0) {
+                num.setBackgroundColor(Color.MAGENTA);
+                player.setBackgroundColor(Color.MAGENTA);
+                num.setTextColor(Color.WHITE);
+                player.setTextColor(Color.WHITE);
+            }
 
             info.addView(num);
             info.addView(player);
@@ -131,8 +177,16 @@ public class TakeStats extends AppCompatActivity {
                 }
 
                 btn.setText(text);
-                btn.setBackgroundColor(333);
-                btn.setWidth(40);
+                btn.setTextSize(12);
+                if((i % 2) != 0) {
+                    btn.setBackgroundColor(Color.GRAY);
+                    btn.setTextColor(Color.BLACK);
+                }
+                else {
+                    num.setBackgroundColor(Color.MAGENTA);
+                    btn.setTextColor(Color.WHITE);
+                }
+                btn.setLayoutParams(new LinearLayout.LayoutParams(screenWidth / (template.getNames().size() + 2), screenHeight / (template.getNames().size())));
                 btn.setHeight(30);
                 //btn.setId(j);
                 btn.setOnClickListener(new View.OnClickListener() {
