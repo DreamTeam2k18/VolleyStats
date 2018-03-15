@@ -1,34 +1,17 @@
 package com.example.niceg.mysqlproject;
 
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import jxl.Workbook;
-import jxl.WorkbookSettings;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
-import jxl.write.biff.RowsExceededException;
 
 public class TakeStats extends AppCompatActivity {
 
@@ -96,9 +79,9 @@ public class TakeStats extends AppCompatActivity {
 
     public void drawStats() {
         ArrayList<String> list = template.getNames();
-        LinearLayout info = new LinearLayout(this);
         LinearLayout stats = new LinearLayout(this);
         LinearLayout layout = findViewById(R.id.playersGroup);
+        LinearLayout title = findViewById(R.id.titleRow);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
@@ -132,11 +115,11 @@ public class TakeStats extends AppCompatActivity {
             }
 
             stat.setTextSize(16);
-
+            stat.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             stats.addView(stat);
         }
 
-        layout.addView(stats);
+        title.addView(stats);
         //Test size
         int elems  = roster.playersList.size();
 
@@ -150,6 +133,7 @@ public class TakeStats extends AppCompatActivity {
             num.setMinWidth(50);
             num.setTextSize(12);
             num.setPaddingRelative(10, 10, 10, 10);
+            num.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
             player.setText(roster.playersList.get(i).getFname());
 
@@ -161,20 +145,23 @@ public class TakeStats extends AppCompatActivity {
                 player.setMinWidth(300);
                 player.setMaxWidth(300);
             }
+
+            player.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            player.setMaxLines(1);
             player.setTextSize(12);
             player.setPaddingRelative(10, 10, 10, 10);
+            player.setAllCaps(true);
 
             if((i % 2) == 0) {
-                num.setBackgroundColor(Color.MAGENTA);
-                player.setBackgroundColor(Color.MAGENTA);
-                num.setTextColor(Color.WHITE);
-                player.setTextColor(Color.WHITE);
+                num.setTextColor(Color.MAGENTA);
+                player.setTextColor(Color.MAGENTA);
             }
 
+            LinearLayout info = new LinearLayout(this);
             info.addView(num);
             info.addView(player);
 
-           /*for (int j = 0; j < template.getNames().size(); j++) {
+           for (int j = 0; j < template.getNames().size(); j++) {
                 //Final level bullshit that doesnt make any sense and I hate it.
                 final int x = i;
                 final int y = j;
@@ -192,13 +179,12 @@ public class TakeStats extends AppCompatActivity {
                 btn.setText(text);
                 btn.setTextSize(12);
                 if((i % 2) != 0) {
-                    btn.setBackgroundColor(Color.GRAY);
-                    btn.setTextColor(Color.BLACK);
-                }
-                else {
-                    num.setBackgroundColor(Color.MAGENTA);
                     btn.setTextColor(Color.WHITE);
                 }
+                else {
+                    btn.setTextColor(Color.MAGENTA);
+                }
+
                 btn.setLayoutParams(new LinearLayout.LayoutParams(screenWidth / (template.getNames().size() + 2), screenHeight / (template.getNames().size())));
                 btn.setHeight(30);
 
@@ -233,7 +219,7 @@ public class TakeStats extends AppCompatActivity {
                 info.addView(btn);
 
             }
-           */
+
             //layout = findViewById(R.id.playersGroup);
             layout.addView(info);
 
