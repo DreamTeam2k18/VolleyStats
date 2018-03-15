@@ -3,6 +3,8 @@
     package="com.example.niceg.mysqlproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--Added to try and let it write to SD Card-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"

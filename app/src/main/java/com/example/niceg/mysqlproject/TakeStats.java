@@ -1,8 +1,11 @@
 package com.example.niceg.mysqlproject;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -11,7 +14,18 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 public class TakeStats extends AppCompatActivity {
 
@@ -75,6 +89,11 @@ public class TakeStats extends AppCompatActivity {
         }
 
         drawStats();
+
+        String[] columns = new String[] { "_id", "item", "description" };
+
+        MatrixCursor matrixCursor= new MatrixCursor(columns);
+        exportToExcel(matrixCursor);
     }
 
     public void drawStats() {
@@ -226,58 +245,59 @@ public class TakeStats extends AppCompatActivity {
         }
     }
 
-//    public void exportToExcel(Cursor cursor) {
-//        final String fileName = "testFile.xls";
-//
-//        //Saving file in external storage
-//        File sdCard = Environment.getExternalStorageDirectory();
-//        File directory = new File(sdCard.getAbsolutePath() + "/javatechig.todo");
-//
-//        //create directory if not exist
-//        if(!directory.isDirectory()){
-//            directory.mkdirs();
-//        }
-//
-//        //file path
-//        File file = new File(directory, fileName);
-//
-//        WorkbookSettings wbSettings = new WorkbookSettings();
-//        wbSettings.setLocale(new Locale("en", "EN"));
-//        WritableWorkbook workbook;
-//
-//        try {
-//            workbook = Workbook.createWorkbook(file, wbSettings);
-//            //Excel sheet name. 0 represents first sheet
-//            WritableSheet sheet = workbook.createSheet("MyShoppingList", 0);
-//
-//            try {
-//                sheet.addCell(new Label(0, 0, "Subject")); // column and row
-//                sheet.addCell(new Label(1, 0, "Description"));
-//                if (cursor.moveToFirst()) {
-//                    do {
-//                        //String title = cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_SUBJECT));
-//                        //String desc = cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_DESC));
-//
-//                        int i = cursor.getPosition() + 1;
-//                        //sheet.addCell(new Label(0, i, title));
-//                        //sheet.addCell(new Label(1, i, desc));
-//                    } while (cursor.moveToNext());
-//                }
-//                //closing cursor
-//                cursor.close();
-//            } catch (RowsExceededException e) {
-//                e.printStackTrace();
-//            } catch (WriteException e) {
-//                e.printStackTrace();
-//            }
-//            workbook.write();
-//            try {
-//                workbook.close();
-//            } catch (WriteException e) {
-//                e.printStackTrace();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void exportToExcel(Cursor cursor) {
+        final String fileName = "testFile.xls";
+
+        //Saving file in external storage
+        File sdCard = Environment.getExternalStorageDirectory();
+        //File directory = new File(sdCard.getAbsolutePath() + "/javatechig.todo");
+        File directory = new File(sdCard.getAbsolutePath() + "/EmmaFile");
+
+        //create directory if not exist
+        if(!directory.isDirectory()){
+            directory.mkdirs();
+        }
+
+        //file path
+        File file = new File(directory, fileName);
+
+        WorkbookSettings wbSettings = new WorkbookSettings();
+        wbSettings.setLocale(new Locale("en", "EN"));
+        WritableWorkbook workbook;
+
+        try {
+            workbook = Workbook.createWorkbook(file, wbSettings);
+            //Excel sheet name. 0 represents first sheet
+            WritableSheet sheet = workbook.createSheet("MyShoppingList", 0);
+
+            try {
+                sheet.addCell(new Label(0, 0, "Subject")); // column and row
+                sheet.addCell(new Label(1, 0, "Description"));
+                if (cursor.moveToFirst()) {
+                    do {
+                        String title = "title";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_SUBJECT));
+                        String desc = "description";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_DESC));
+
+                        int i = cursor.getPosition() + 1;
+                        sheet.addCell(new Label(0, i, title));
+                        sheet.addCell(new Label(1, i, desc));
+                    } while (cursor.moveToNext());
+                }
+                //closing cursor
+                cursor.close();
+            } catch (RowsExceededException e) {
+                e.printStackTrace();
+            } catch (WriteException e) {
+                e.printStackTrace();
+            }
+            workbook.write();
+            try {
+                workbook.close();
+            } catch (WriteException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
