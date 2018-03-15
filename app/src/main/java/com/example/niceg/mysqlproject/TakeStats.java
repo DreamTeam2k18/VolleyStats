@@ -2,7 +2,9 @@ package com.example.niceg.mysqlproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -14,8 +16,19 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 public class TakeStats extends AppCompatActivity {
 
@@ -124,7 +137,10 @@ public class TakeStats extends AppCompatActivity {
         }
 
         layout.addView(stats);
+        //Test size
+        int elems  = roster.playersList.size();
 
+        //Notes: i is breaking things, ifit is more than 1
         for(int i = 0; i < roster.playersList.size(); i++) {
             TextView num = new TextView(this);
             TextView player = new TextView(this);
@@ -136,9 +152,6 @@ public class TakeStats extends AppCompatActivity {
             num.setPaddingRelative(10, 10, 10, 10);
 
             player.setText(roster.playersList.get(i).getFname());
-            //THIS WONT WORK WITH MULTIPLE PLAYERSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-//            player.setMinWidth(roster.playersList.get(i).getFname().length() * 100);
-//            player.setMaxWidth(roster.playersList.get(i).getFname().length() * 100);
 
             if(template.getNames().size() > 8) {
                 player.setMinWidth(200);
@@ -161,7 +174,7 @@ public class TakeStats extends AppCompatActivity {
             info.addView(num);
             info.addView(player);
 
-            for (int j = 0; j < template.getNames().size(); j++) {
+           /*for (int j = 0; j < template.getNames().size(); j++) {
                 //Final level bullshit that doesnt make any sense and I hate it.
                 final int x = i;
                 final int y = j;
@@ -169,10 +182,10 @@ public class TakeStats extends AppCompatActivity {
                 CharSequence text = "0";
                 final Button btn = new Button(this);
 
-                for(int k = 0; k < roster.playersList.get(x).playerStats.size();k++){
+                for(int k = 0; k < roster.playersList.get(i).playerStats.size();k++){
                     //Found the corresponding btn stat name
-                    if(roster.playersList.get(x).playerStats.get(k).m_name.equals(template.getRealNames().get(j))){
-                        text = (Integer.toString(roster.playersList.get(x).playerStats.get(k).m_value));
+                    if(roster.playersList.get(i).playerStats.get(k).m_name.equals(template.getRealNames().get(j))){
+                        text = (Integer.toString(roster.playersList.get(i).playerStats.get(k).m_value));
                     }
                 }
 
@@ -188,11 +201,9 @@ public class TakeStats extends AppCompatActivity {
                 }
                 btn.setLayoutParams(new LinearLayout.LayoutParams(screenWidth / (template.getNames().size() + 2), screenHeight / (template.getNames().size())));
                 btn.setHeight(30);
-                //btn.setId(j);
+
                 btn.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        //Set integer used for button
-                        int volatileInt = 0;
                         //int in = Integer.valueOf((String) btn.getText());
                         int in  = 0;
 
@@ -222,8 +233,65 @@ public class TakeStats extends AppCompatActivity {
                 info.addView(btn);
 
             }
-            layout = findViewById(R.id.playersGroup);
-                layout.addView(info);
+           */
+            //layout = findViewById(R.id.playersGroup);
+            layout.addView(info);
+
         }
     }
+
+//    public void exportToExcel(Cursor cursor) {
+//        final String fileName = "testFile.xls";
+//
+//        //Saving file in external storage
+//        File sdCard = Environment.getExternalStorageDirectory();
+//        File directory = new File(sdCard.getAbsolutePath() + "/javatechig.todo");
+//
+//        //create directory if not exist
+//        if(!directory.isDirectory()){
+//            directory.mkdirs();
+//        }
+//
+//        //file path
+//        File file = new File(directory, fileName);
+//
+//        WorkbookSettings wbSettings = new WorkbookSettings();
+//        wbSettings.setLocale(new Locale("en", "EN"));
+//        WritableWorkbook workbook;
+//
+//        try {
+//            workbook = Workbook.createWorkbook(file, wbSettings);
+//            //Excel sheet name. 0 represents first sheet
+//            WritableSheet sheet = workbook.createSheet("MyShoppingList", 0);
+//
+//            try {
+//                sheet.addCell(new Label(0, 0, "Subject")); // column and row
+//                sheet.addCell(new Label(1, 0, "Description"));
+//                if (cursor.moveToFirst()) {
+//                    do {
+//                        //String title = cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_SUBJECT));
+//                        //String desc = cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_DESC));
+//
+//                        int i = cursor.getPosition() + 1;
+//                        //sheet.addCell(new Label(0, i, title));
+//                        //sheet.addCell(new Label(1, i, desc));
+//                    } while (cursor.moveToNext());
+//                }
+//                //closing cursor
+//                cursor.close();
+//            } catch (RowsExceededException e) {
+//                e.printStackTrace();
+//            } catch (WriteException e) {
+//                e.printStackTrace();
+//            }
+//            workbook.write();
+//            try {
+//                workbook.close();
+//            } catch (WriteException e) {
+//                e.printStackTrace();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
