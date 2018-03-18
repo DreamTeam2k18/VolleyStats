@@ -149,7 +149,7 @@ public class PlayerInfo extends AppCompatActivity {
             player.addView(fname);
             player.addView(lname);
 
-            LinearLayout group = findViewById(R.id.playerGroup);
+            LinearLayout group = (LinearLayout)findViewById(R.id.playerGroup);
             group.addView(player);
 
         }

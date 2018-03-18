@@ -3,10 +3,12 @@ package com.example.niceg.mysqlproject;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -101,8 +103,8 @@ public class TakeStats extends AppCompatActivity {
     public void drawStats() {
         ArrayList<String> list = template.getNames();
         LinearLayout stats = new LinearLayout(this);
-        LinearLayout layout = findViewById(R.id.playersGroup);
-        LinearLayout title = findViewById(R.id.titleRow);
+        LinearLayout layout = (LinearLayout)findViewById(R.id.playersGroup);
+        LinearLayout title = (LinearLayout)findViewById(R.id.titleRow);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
@@ -276,27 +278,14 @@ public class TakeStats extends AppCompatActivity {
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();
 
+        File directory = new File("sdcard/EmmaFile/");
 
-        File directory = new File(sdCard.getAbsolutePath() + "/EmmaFile/");
+        //File directory = new File(sdCard.getAbsolutePath() + "/EmmaFile/");
 
         //create directory if not exist
         if(!directory.exists()) {
             directory.mkdirs();
         }
-//        if (!directory.exists()) {
-//            //directory.mkdirs();
-//            try {
-//                directory.mkdirs();
-//                directory.canRead();
-//                directory.canWrite();
-//            } catch (Exception e){
-//                alertDialog("NO DIRECTORY", "Directory creation failed. Please try again." + '\n' + e.getLocalizedMessage());
-//            }
-//        }
-
-//        if(!directory.exists()) {
-//            alertDialog("NO DIRECTORY", "Directory creation failed. Please try again.");
-//        }
 
         //file path
         File file = new File(directory, fileName);
@@ -339,8 +328,45 @@ public class TakeStats extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
 
-            alertDialog("EXPORT FAILED", "Export failed. Please try again." + '\n' + e.getLocalizedMessage());
+            //alertDialog("EXPORT FAILED", "Export failed. Please try again." + '\n' + e.getLocalizedMessage());
         }
+
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+//
+//            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+//                    == PackageManager.PERMISSION_DENIED) {
+//
+//                Log.d("permission", "permission denied to WRITE_EXTERNAL_STORAGE - requesting it");
+//                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+//
+//                requestPermissions(permissions, PERMISSION_REQUEST_CODE);
+//
+//            }
+//        }
+
+        //String fileLocation=file.getAbsolutePath();
+
+        if (!file.exists()) {
+            alertDialog("nope", "file doesn't exist");
+        }
+
+        File file2 = new File(file.toString());
+        Uri uri = Uri.fromFile(file);
+        //Uri uri = Uri.parse(file.toString());
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+// set the type to 'email'
+        emailIntent.setType("vnd.android.cursor.dir/email");
+// add email(s) here to whom you want to send email
+        String to[] = {"emma.thompson@oit.edu"};
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+// add the attachment
+        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+// add mail subject
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Mail Subject");
+// create mail service chooser
+        startActivity(Intent.createChooser(emailIntent , "Send email..."));
+
     }
 
     public void alertDialog(String title, String msg) {
