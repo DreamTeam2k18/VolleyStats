@@ -297,21 +297,34 @@ public class TakeStats extends AppCompatActivity {
         try {
             workbook = Workbook.createWorkbook(file, wbSettings);
             //Excel sheet name. 0 represents first sheet
-            WritableSheet sheet = workbook.createSheet("MyShoppingList", 0);
+            WritableSheet sheet = workbook.createSheet("Match0", 0);
 
             try {
-                sheet.addCell(new Label(0, 0, "Subject")); // column and row
-                sheet.addCell(new Label(1, 0, "Description"));
-                if (cursor.moveToFirst()) {
-                    do {
-                        String title = "title";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_SUBJECT));
-                        String desc = "description";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_DESC));
-
-                        int i = cursor.getPosition() + 1;
-                        sheet.addCell(new Label(0, i, title));
-                        sheet.addCell(new Label(1, i, desc));
-                    } while (cursor.moveToNext());
+                sheet.addCell(new Label(0, 0, "#")); // column and row
+                sheet.addCell(new Label(1, 0, "Name"));
+                for(int i = 2; i < template.getNames().size() + 2; i++) {
+                    sheet.addCell(new Label(i, 0, template.getNames().get(i - 2)));
                 }
+               // if (cursor.moveToFirst()) {
+                   // do {
+//                        String title = "title";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_SUBJECT));
+//                        String desc = "description";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_DESC));
+
+                        for (int j = 1; j < roster.playersList.size() + 1; j++) {
+                            sheet.addCell(new Label(0, j, roster.playersList.get(j - 1).m_num));
+                            sheet.addCell(new Label(1, j, roster.playersList.get(j - 1).m_fname));
+
+                            for(int i = 2; i < template.getNames().size() + 2; i++) {
+                                CharSequence text = "0";
+                                text = (Integer.toString(roster.playersList.get(j - 1).playerStats.get(i - 2).getStatValue()));
+                                sheet.addCell(new Label(i, j, (String)text));
+                            }
+                        }
+                        int i = cursor.getPosition() + 1;
+//                        sheet.addCell(new Label(0, i, title));
+//                        sheet.addCell(new Label(1, i, desc));
+                    //} while (cursor.moveToNext());
+                //}
                 //closing cursor
                 cursor.close();
             } catch (RowsExceededException e) {
