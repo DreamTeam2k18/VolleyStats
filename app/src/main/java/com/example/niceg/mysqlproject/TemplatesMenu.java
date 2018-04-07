@@ -50,6 +50,11 @@ public class TemplatesMenu extends AppCompatActivity {
             vol.templatesList.add(comprehensive2);
         }
 
+        for (int i = 0; i < vol.templatesList.size(); i++) {
+            Template temp = (Template)vol.templatesList.get(i);
+            temp.m_selected = false;
+        }
+
         newTemplate(vol.templatesList);
     }
 
@@ -69,7 +74,12 @@ public class TemplatesMenu extends AppCompatActivity {
         View radioButton = rg.findViewById(radioButtonID);
         int idx = rg.indexOfChild(radioButton);
 
+        if(idx == -1) {
+            idx = 1;
+        }
+
         RadioButton r = (RadioButton)  rg.getChildAt(idx);
+
         String selectedtext = r.getText().toString();
 
         checkRadioBoxes(vol.templatesList, selectedtext);
@@ -78,13 +88,26 @@ public class TemplatesMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void checkRadioBoxes(List list, String name) {
+    public boolean checkRadioBoxes(List list, String name) {
+        boolean flag = false;
         for (int i = 0; i < list.size(); i++) {
             Template temp = (Template)list.get(i);
             if (temp.getNameEmma() == name) {
                 temp.m_selected = true;
+                flag = true;
             }
         }
+
+//        if(flag == false) {
+//            for (int i = 0; i < list.size(); i++) {
+//                Template temp = (Template) list.get(i);
+//                if (temp.getNameEmma() == "INTERMEDIATE") {
+//                    temp.m_selected = true;
+//                    flag = true;
+//                }
+//            }
+//        }
+        return flag;
     }
 
      public void newTemplate(List list) {
@@ -100,10 +123,10 @@ public class TemplatesMenu extends AppCompatActivity {
              radioButton.setTextSize(30);
              //radioButton.setTextColor(Color.parseColor("#aaa"));
 
-             if(temp.getNameEmma() == "INTERMEDIATE") {
-                 radioButton.setSelected(true);
-                 temp.m_selected = true;
-             }
+//             if(temp.getNameEmma() == "INTERMEDIATE") {
+//                 //radioButton.setChecked(true);
+//                 temp.m_selected = true;
+//             }
 
              RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
              rg.addView(radioButton);

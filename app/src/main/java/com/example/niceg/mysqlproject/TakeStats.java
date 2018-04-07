@@ -43,6 +43,7 @@ public class TakeStats extends AppCompatActivity {
     static int m_size;
     int globaltest;
     MatrixCursor matrixCursor;
+    static String school_name;
 
     //Default values in case user hasn't accessed templatesmenu yet
     Template basic = new Template("BASIC", true, false, false, true,
@@ -70,6 +71,9 @@ public class TakeStats extends AppCompatActivity {
         roster = home.getRosterHome();
         //Contains templates
         vol = home.getVolHome();
+
+        SchoolInfo schoolInfo = new SchoolInfo();
+        school_name = (String)schoolInfo.getSchool_name();
 
         //Get templates if they do not already exist
         if(vol.templatesList.isEmpty()){
@@ -123,8 +127,8 @@ public class TakeStats extends AppCompatActivity {
             else if(j == -1) {
                 stat.setText("NAME");
                 if(template.getNames().size() > 8) {
-                    stat.setMinWidth(200);
-                    stat.setMaxWidth(200);
+                    stat.setMinWidth(150);
+                    stat.setMaxWidth(150);
                 }
                 else {
                     stat.setMinWidth(300);
@@ -161,8 +165,8 @@ public class TakeStats extends AppCompatActivity {
             player.setText(roster.playersList.get(i).getFname());
 
             if(template.getNames().size() > 8) {
-                player.setMinWidth(200);
-                player.setMaxWidth(200);
+                player.setMinWidth(150);
+                player.setMaxWidth(150);
             }
             else {
                 player.setMinWidth(300);
@@ -208,8 +212,8 @@ public class TakeStats extends AppCompatActivity {
                     btn.setTextColor(Color.MAGENTA);
                 }
 
-                btn.setLayoutParams(new LinearLayout.LayoutParams(screenWidth / (template.getNames().size() + 2), screenHeight / (template.getNames().size())));
-                btn.setHeight(30);
+                btn.setLayoutParams(new LinearLayout.LayoutParams(screenWidth / (template.getNames().size() + 2), 125));
+                //btn.setHeight(30);
 
                 btn.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -273,7 +277,7 @@ public class TakeStats extends AppCompatActivity {
             }
         }
 
-        final String fileName = "testFile.xls";
+        final String fileName = "match0.xls";
 
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();

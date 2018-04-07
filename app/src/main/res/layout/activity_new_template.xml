@@ -92,13 +92,15 @@
 
     <ScrollView
         android:id="@+id/scrollable"
-        android:layout_width="368dp"
+        android:layout_width="371dp"
         android:layout_height="303dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_done"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintVertical_bias="1.0">
 
@@ -117,73 +119,73 @@
 
             <CheckBox
                 android:id="@+id/srv_rcv_m"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SERVE RECEIVE -" />
+                android:text="SERVE RECEIVE -"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/ace"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ACE" />
+                android:text="ACE"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/srv_p"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SERVE +" />
+                android:text="SERVE +"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/srv_m"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SERVE -" />
+                android:text="SERVE -"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/atk_kill"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="KILL" />
+                android:text="KILL"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/atk_err"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ATTACK ERROR" />
+                android:text="ATTACK ERROR"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/atk_0"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ATTACK 0" />
+                android:text="ATTACK 0"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/ast"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ASSIST" />
+                android:text="ASSIST"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/blk_solo"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BLOCK SOLO" />
+                android:text="BLOCK SOLO"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/blk_ast"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BLOCK ASSIST" />
+                android:text="BLOCK ASSIST"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/dig"
@@ -194,17 +196,17 @@
 
             <CheckBox
                 android:id="@+id/net_vio"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NET VIOLATION" />
+                android:text="NET VIOLATION"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/ft_flt"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FOOT FAULT" />
+                android:text="FOOT FAULT"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/dbl_cntct"
@@ -215,17 +217,17 @@
 
             <CheckBox
                 android:id="@+id/lft"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LIFT" />
+                android:text="LIFT"
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/out_rot"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OUT OF ROTATION" />
+                android:text="OUT OF ROTATION"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 

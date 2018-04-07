@@ -104,19 +104,20 @@ public class PlayerInfo extends AppCompatActivity {
             TextView fname = new TextView(this);
             TextView lname = new TextView(this);
 
-            ImageButton trash = new ImageButton(this);
-            trash.setImageResource(android.R.drawable.ic_menu_delete);
-            trash.setBackgroundColor(0);
-            trash.setOnClickListener(RemoveClickListener);
-            trash.setId(i);
-
-            ImageButton edit = new ImageButton(this);
-            edit.setImageResource(android.R.drawable.ic_menu_edit);
-            edit.setBackgroundColor(0);
-            edit.setOnClickListener(ClickListener);
-            edit.setId(i);
+//            ImageButton trash = new ImageButton(this);
+//            trash.setImageResource(android.R.drawable.ic_menu_delete);
+//            trash.setBackgroundColor(0);
+//            trash.setOnClickListener(RemoveClickListener);
+//            trash.setId(i);
+//
+//            ImageButton edit = new ImageButton(this);
+//            edit.setImageResource(android.R.drawable.ic_menu_edit);
+//            edit.setBackgroundColor(0);
+//            edit.setOnClickListener(ClickListener);
+//            edit.setId(i);
 
             num.layout(0, 10, 0, 0 );
+            num.setPadding(110, 0, 0, 0);
             num.setText(temp.getNum());
             num.setTextSize(20);
             num.setAllCaps(true);
@@ -126,6 +127,7 @@ public class PlayerInfo extends AppCompatActivity {
             num.setId(i);
 
             fname.layout(0, 10, 0, 0);
+            fname.setPadding(120, 0, 0, 0);
             fname.setText(temp.getFname());
             fname.setTextSize(20);
             fname.setAllCaps(true);
@@ -135,6 +137,7 @@ public class PlayerInfo extends AppCompatActivity {
             fname.setId(i);
 
             lname.layout(0, 10, 0, 0);
+            lname.setPadding(120, 0,0,0);
             lname.setText(temp.getLname());
             lname.setTextSize(20);
             lname.setAllCaps(true);
@@ -143,8 +146,8 @@ public class PlayerInfo extends AppCompatActivity {
             lname.setMaxLines(1);
             lname.setId(i);
 
-            player.addView(trash);
-            player.addView(edit);
+//            player.addView(trash);
+//            player.addView(edit);
             player.addView(num);
             player.addView(fname);
             player.addView(lname);

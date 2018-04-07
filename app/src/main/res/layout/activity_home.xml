@@ -68,24 +68,11 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="LOAD MATCH"
-        android:textSize="30sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-    <Button
         android:id="@+id/button5"
-        android:layout_width="wrap_content"
+        android:layout_width="164dp"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="80dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="onPlayerInfoClick"
@@ -99,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="144dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="onTemplatesClick"
@@ -113,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="onSchoolInfoClick"
