@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 public class SchoolInfo extends Activity {
 
-    static CharSequence school_name = "";
-    static CharSequence mascot_name = "";
+    static CharSequence home_name = "";
+    static CharSequence away_name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +18,10 @@ public class SchoolInfo extends Activity {
 
         TextView name;
         TextView mascot;
-        name = (TextView) findViewById(R.id.et_player_num);
-        name.setText(getSchool_name());
-        mascot = (TextView) findViewById(R.id.et_player_name);
-        mascot.setText(getMascot_name());
+        name = (TextView) findViewById(R.id.et_home);
+        name.setText(getHome_name());
+        mascot = (TextView) findViewById(R.id.et_away);
+        mascot.setText(getAway_name());
     }
 
     public void onSettingsClick(View view) {
@@ -32,9 +32,9 @@ public class SchoolInfo extends Activity {
     public void onClearClick(View view) {
         TextView name;
         TextView mascot;
-        name = (TextView) findViewById(R.id.et_player_num);
+        name = (TextView) findViewById(R.id.et_home);
         name.setText("");
-        mascot = (TextView) findViewById(R.id.et_player_name);
+        mascot = (TextView) findViewById(R.id.et_away);
         mascot.setText("");
     }
 
@@ -43,23 +43,23 @@ public class SchoolInfo extends Activity {
         TextView mascot;
         CharSequence nameText;
         CharSequence mascotText;
-        name = (TextView) findViewById(R.id.et_player_num);
+        name = (TextView) findViewById(R.id.et_home);
         nameText = name.getText();
-        school_name = nameText;
-        mascot = (TextView) findViewById(R.id.et_player_name);
+        home_name = nameText;
+        mascot = (TextView) findViewById(R.id.et_away);
         mascotText = mascot.getText();
-        mascot_name = mascotText;
+        away_name = mascotText;
 
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
-    public CharSequence getSchool_name() {
-        return school_name;
+    public String getHome_name() {
+        return (String)home_name;
     }
 
-    public CharSequence getMascot_name() {
-        return mascot_name;
+    public String getAway_name() {
+        return (String)away_name;
     }
 
 }

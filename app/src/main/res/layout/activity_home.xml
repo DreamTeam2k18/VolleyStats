@@ -62,7 +62,7 @@
         android:elevation="0dp"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="onNewClick"
-        android:text="NEW MATCH"
+        android:text="TAKE STATS"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline" />

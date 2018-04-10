@@ -43,7 +43,8 @@ public class TakeStats extends AppCompatActivity {
     static int m_size;
     int globaltest;
     MatrixCursor matrixCursor;
-    static String school_name;
+    static String home_name;
+    static String away_name;
 
     //Default values in case user hasn't accessed templatesmenu yet
     Template basic = new Template("BASIC", true, false, false, true,
@@ -73,7 +74,8 @@ public class TakeStats extends AppCompatActivity {
         vol = home.getVolHome();
 
         SchoolInfo schoolInfo = new SchoolInfo();
-        school_name = (String)schoolInfo.getSchool_name();
+        home_name = (String)schoolInfo.getHome_name();
+        away_name = (String)schoolInfo.getAway_name();
 
         //Get templates if they do not already exist
         if(vol.templatesList.isEmpty()){
@@ -243,6 +245,37 @@ public class TakeStats extends AppCompatActivity {
                     }
                 });
 
+               btn.setOnLongClickListener(new View.OnLongClickListener() {
+                   public boolean onLongClick(View v) {
+                       //int in = Integer.valueOf((String) btn.getText());
+                       int in  = 0;
+
+                       for(int k = 0; k < roster.playersList.get(x).playerStats.size();k++){
+                           //Found the corresponding btn stat name
+                           if(roster.playersList.get(x).playerStats.get(k).m_name.equals(template.getRealNames().get(y))){
+                               in = roster.playersList.get(x).playerStats.get(k).m_value;
+                           }
+                       }
+
+                       if(in > 0) {
+                           //Incrememnt stored value
+                           --in;
+                           CharSequence newText;
+                           newText = (CharSequence) Integer.toString(in);
+                           btn.setText(newText);
+
+                           //Store Incremented value
+                           for (int k = 0; k < roster.playersList.get(x).playerStats.size(); k++) {
+                               //Found the corresponding btn stat name
+                               if (roster.playersList.get(x).playerStats.get(k).m_name.equals(template.getRealNames().get(y))) {
+                                   roster.playersList.get(x).playerStats.get(k).m_value = in;
+                               }
+                           }
+                       }
+                       return true;
+                   }
+               });
+
                 info.addView(btn);
 
             }
@@ -277,7 +310,7 @@ public class TakeStats extends AppCompatActivity {
             }
         }
 
-        final String fileName = "match0.xls";
+        final String fileName = "match0.xls";//home_name + "vs" + away_name + ".xls";
 
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();
@@ -309,27 +342,16 @@ public class TakeStats extends AppCompatActivity {
                 for(int i = 2; i < template.getNames().size() + 2; i++) {
                     sheet.addCell(new Label(i, 0, template.getNames().get(i - 2)));
                 }
-               // if (cursor.moveToFirst()) {
-                   // do {
-//                        String title = "title";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_SUBJECT));
-//                        String desc = "description";//cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_DESC));
+                    for (int j = 1; j < roster.playersList.size() + 1; j++) {
+                        sheet.addCell(new Label(0, j, roster.playersList.get(j - 1).m_num));
+                        sheet.addCell(new Label(1, j, roster.playersList.get(j - 1).m_fname));
 
-                        for (int j = 1; j < roster.playersList.size() + 1; j++) {
-                            sheet.addCell(new Label(0, j, roster.playersList.get(j - 1).m_num));
-                            sheet.addCell(new Label(1, j, roster.playersList.get(j - 1).m_fname));
-
-                            for(int i = 2; i < template.getNames().size() + 2; i++) {
-                                CharSequence text = "0";
-                                text = (Integer.toString(roster.playersList.get(j - 1).playerStats.get(i - 2).getStatValue()));
-                                sheet.addCell(new Label(i, j, (String)text));
-                            }
+                        for(int i = 2; i < template.getNames().size() + 2; i++) {
+                            CharSequence text = "0";
+                            text = (Integer.toString(roster.playersList.get(j - 1).playerStats.get(i - 2).getStatValue()));
+                            sheet.addCell(new Label(i, j, (String)text));
                         }
-                        int i = cursor.getPosition() + 1;
-//                        sheet.addCell(new Label(0, i, title));
-//                        sheet.addCell(new Label(1, i, desc));
-                    //} while (cursor.moveToNext());
-                //}
-                //closing cursor
+                    }
                 cursor.close();
             } catch (RowsExceededException e) {
                 e.printStackTrace();
